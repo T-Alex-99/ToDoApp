@@ -77,7 +77,8 @@ public class HomeFragment extends Fragment {
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
             if (mAccel > 10) {
-                content.remove(ed.getText().toString());
+                content.remove(adapter.getSelectedItem());
+                adapter.notifyDataSetChanged();
                 Toast.makeText(c.getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
             }
         }
