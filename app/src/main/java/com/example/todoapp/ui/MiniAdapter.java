@@ -10,13 +10,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todoapp.R;
+import com.example.todoapp.ui.home.HomeFragment;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MiniAdapter extends RecyclerView.Adapter<MiniAdapter.FirstViewHolder> {
     private ArrayList<String> content;
     private TextView show;
     private String selectedItem;
+    private Object HomeFragment;
 
     // Daten werden von der Activity hineingereicht
     public MiniAdapter(ArrayList<String> content) {
@@ -46,6 +49,9 @@ public class MiniAdapter extends RecyclerView.Adapter<MiniAdapter.FirstViewHolde
                 selectedItem = s;
             }
         });
+
+
+
     }
     @Override
     public int getItemCount() {
@@ -72,9 +78,18 @@ public class MiniAdapter extends RecyclerView.Adapter<MiniAdapter.FirstViewHolde
             notifyItemRemoved(position);
         }
 
+        public void selected(int randomInt) {
+            AppCompatActivity act;
+            act = (AppCompatActivity) HomeFragment;
+            TextView show = act.findViewById(R.id.show);
+            show.setText(content.get(randomInt).toString());
+        }
+
     }
 
-    public String getSelectedItem() {
+
+
+        public String getSelectedItem() {
         return selectedItem;
     }
 }

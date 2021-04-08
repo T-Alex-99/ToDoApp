@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class HomeViewModel extends ViewModel {
 
-    private TextView text;
+    private MutableLiveData<Integer> shakeItem;
 
     public HomeViewModel() {
     }

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -28,6 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class HomeFragment extends Fragment {
 
@@ -39,6 +41,7 @@ public class HomeFragment extends Fragment {
     private float mAccelCurrent;
     private float mAccelLast;
     private Context c;
+    private TextView selected;
 
     //To-Do RecyclerView
     private RecyclerView rv;
@@ -48,6 +51,7 @@ public class HomeFragment extends Fragment {
     private MiniAdapter adapter;
     private EditText ed;
     private RecyclerView.LayoutManager layoutRV;
+    private Integer randomInt;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -77,9 +81,11 @@ public class HomeFragment extends Fragment {
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
             if (mAccel > 10) {
-                content.remove(adapter.getSelectedItem());
-                adapter.notifyDataSetChanged();
-                Toast.makeText(c.getApplicationContext(), "Shake event detected", Toast.LENGTH_SHORT).show();
+                Random random = new Random();
+                randomInt = random.nextInt(adapter.getItemCount()) ;
+
+                selected.setText(content.get(randomInt));
+                Toast.makeText(c.getApplicationContext(), "Shake event detected" + randomInt, Toast.LENGTH_SHORT).show();
             }
         }
         @Override
@@ -107,6 +113,8 @@ public class HomeFragment extends Fragment {
         rv = (RecyclerView)view.findViewById(R.id.rec_view_first);
         layoutRV = new LinearLayoutManager(this.getActivity());
         rv.setLayoutManager(layoutRV);
+
+        selected = view.findViewById(R.id.selected);
 
         //Model erzeugen
         content = new ArrayList<String>();
