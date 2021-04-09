@@ -23,6 +23,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.todoapp.R;
 import com.example.todoapp.ui.MiniAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -80,10 +82,13 @@ public class HomeFragment extends Fragment {
             mAccelCurrent = (float) Math.sqrt((double) (x * x + y * y + z * z));
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
-            if (mAccel > 10) {
+            if (mAccel > 13) {
                 Random random = new Random();
                 randomInt = random.nextInt(adapter.getItemCount()) ;
-
+                YoYo.with(Techniques.BounceInDown)
+                        .duration(1200)
+                        .repeat(0)
+                        .playOn(selected);
                 selected.setText(content.get(randomInt));
                 Toast.makeText(c.getApplicationContext(), "Shake event detected" + randomInt, Toast.LENGTH_SHORT).show();
             }

@@ -43,7 +43,8 @@
         android:id="@+id/selected"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Erstma garnix"
+        android:textSize="50sp"
+        android:text=""
         />
 
 
