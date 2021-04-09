@@ -1,6 +1,8 @@
 package com.example.todoapp.ui.home;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -85,12 +87,15 @@ public class HomeFragment extends Fragment {
             if (mAccel > 13) {
                 Random random = new Random();
                 randomInt = random.nextInt(adapter.getItemCount()) ;
+                //selected.setBackgroundColor(Color.parseColor("#338205"));
+                Drawable green = getResources().getDrawable(R.drawable.text_selected_1,null);
+                selected.setBackground(green);
                 YoYo.with(Techniques.BounceInDown)
                         .duration(1200)
                         .repeat(0)
                         .playOn(selected);
                 selected.setText(content.get(randomInt));
-                Toast.makeText(c.getApplicationContext(), "Shake event detected" + randomInt, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(c.getApplicationContext(), "Shake event detected" + randomInt, Toast.LENGTH_SHORT).show();
             }
         }
         @Override
