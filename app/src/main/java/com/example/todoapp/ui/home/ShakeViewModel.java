@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-public class HomeViewModel extends ViewModel {
+public class ShakeViewModel extends ViewModel {
 
     private MutableLiveData<Integer> shakeItem;
 
-    public HomeViewModel() {
+    public ShakeViewModel() {
     }
 
     //Wenn keine To-Dos vorhanden sind, soll der Text sichtbar sein!

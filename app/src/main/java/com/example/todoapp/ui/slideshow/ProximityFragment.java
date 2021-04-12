@@ -1,18 +1,13 @@
 package com.example.todoapp.ui.slideshow;
 
-import android.content.AsyncQueryHandler;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.todoapp.R;
@@ -23,13 +18,11 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Bundle;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class SlideshowFragment extends Fragment implements SensorEventListener {
+public class ProximityFragment extends Fragment implements SensorEventListener {
 
-    private SlideshowViewModel slideshowViewModel;
+    private ProximityViewModel proximityViewModel;
     private TextView textView;
     private SensorManager sensorManager;
     private Sensor proximity;
@@ -38,9 +31,9 @@ public class SlideshowFragment extends Fragment implements SensorEventListener {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        proximityViewModel =
+                new ViewModelProvider(this).get(ProximityViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_proximity, container, false);
 
 
         c = root.getContext();

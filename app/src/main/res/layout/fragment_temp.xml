@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.GalleryFragment">
+    tools:context=".ui.temp.TempFragment"
+    android:background="#f7f3e9">
 
     <ImageView
         android:id="@+id/set_imageview"

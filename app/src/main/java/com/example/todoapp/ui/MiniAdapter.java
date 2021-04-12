@@ -10,10 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todoapp.R;
-import com.example.todoapp.ui.home.HomeFragment;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MiniAdapter extends RecyclerView.Adapter<MiniAdapter.FirstViewHolder> {
     private ArrayList<String> content;
