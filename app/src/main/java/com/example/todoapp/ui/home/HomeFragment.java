@@ -47,6 +47,7 @@ public class HomeFragment extends Fragment {
     private Context c;
     private TextView selected;
 
+
     //To-Do RecyclerView
     private RecyclerView rv;
     private FloatingActionButton fab1;
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
     private EditText ed;
     private RecyclerView.LayoutManager layoutRV;
     private Integer randomInt;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
