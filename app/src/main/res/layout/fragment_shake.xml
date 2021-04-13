@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#f7f3e9"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
 
     <EditText
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        android:foregroundTint="@color/black"
+        android:inputType="text"
+        android:autofillHints=""
+        android:importantForAutofill="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/show"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kein To-Do Punkt ausgewählt"
+        android:text="@string/missingToDo"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_text"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_view_first"
         android:layout_width="match_parent"
-        android:layout_height="360dp"/>
+        android:layout_height="360dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/show"/>
+
 
         <TextView
             android:id="@+id/selected"
@@ -43,37 +50,47 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/text_selected_0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rec_view_first"
             />
 
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/linearLayout2"
+    <TextView
+        android:id="@+id/text_rv_placeholder"
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_margin="15dp">
+        android:layout_height="wrap_content"
+        android:text="@string/placeholder_text"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/rec_view_first" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:tint="@android:color/black"
         android:backgroundTint="@color/red"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="20dp"
         app:srcCompat="@android:drawable/ic_input_delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
         />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:backgroundTint="@color/green"
             android:tint="@android:color/black"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="20dp"
+            app:srcCompat="@android:drawable/ic_input_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    </RelativeLayout>
 
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

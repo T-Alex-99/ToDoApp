@@ -1,6 +1,7 @@
 package com.example.todoapp.ui.home;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,6 +43,7 @@ public class ShakeFragment extends Fragment {
     private float mAccelLast;
     private Context c;
     private TextView selected;
+    private TextView placeholder;
 
 
     //To-Do RecyclerView
@@ -82,16 +85,23 @@ public class ShakeFragment extends Fragment {
             float delta = mAccelCurrent - mAccelLast;
             mAccel = mAccel * 0.9f + delta;
             if (mAccel > 13) {
-                Random random = new Random();
-                randomInt = random.nextInt(adapter.getItemCount()) ;
-                //selected.setBackgroundColor(Color.parseColor("#338205"));
-                Drawable green = getResources().getDrawable(R.drawable.text_selected_1,null);
-                selected.setBackground(green);
-                YoYo.with(Techniques.BounceInDown)
-                        .duration(1200)
-                        .repeat(0)
-                        .playOn(selected);
-                selected.setText(content.get(randomInt));
+                try {
+                    Random random = new Random();
+                    randomInt = random.nextInt(adapter.getItemCount()) ;
+                    //selected.setBackgroundColor(Color.parseColor("#338205"));
+                    Drawable green = getResources().getDrawable(R.drawable.text_selected_1,null);
+                    selected.setBackground(green);
+                    YoYo.with(Techniques.BounceInDown)
+                            .duration(1200)
+                            .repeat(0)
+                            .playOn(selected);
+                    selected.setText(content.get(randomInt));
+                } catch (IllegalArgumentException e) {
+                    Toast.makeText(c.getApplicationContext(), "Ohne To-Dos bringt dein shaken nichts!", Toast.LENGTH_LONG).show();
+                    Drawable grey = getResources().getDrawable(R.drawable.text_selected_0,null);
+                    selected.setBackground(grey);
+                    selected.setText("");
+                }
                 //Toast.makeText(c.getApplicationContext(), "Shake event detected" + randomInt, Toast.LENGTH_SHORT).show();
             }
         }
@@ -121,6 +131,8 @@ public class ShakeFragment extends Fragment {
         layoutRV = new LinearLayoutManager(this.getActivity());
         rv.setLayoutManager(layoutRV);
 
+
+        placeholder = view.findViewById(R.id.text_rv_placeholder);
         selected = view.findViewById(R.id.selected);
 
         //Model erzeugen
@@ -132,22 +144,27 @@ public class ShakeFragment extends Fragment {
         //Model mit View verknüpfen
         rv.setAdapter(adapter);
 
+        shakeViewModel.checkList(placeholder,content);
 
-        // fab fuegt Editier-Inhalt der Liste hinzu
+        // fab fügt Editier-Inhalt der Liste hinzu
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 content.add(ed.getText().toString());
-                adapter.notifyDataSetChanged(); // Model benachrichtighen
+                adapter.notifyDataSetChanged(); // Model benachrichtigen
+                //Überprüft ob Einträge vorhanden sind
+                shakeViewModel.checkList(placeholder,content);
             }
         });
 
-        //fab delete
+        //fab löscht item
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 content.remove(adapter.getSelectedItem());
-                adapter.notifyDataSetChanged(); // Model benachrichtighen
+                adapter.notifyDataSetChanged(); // Model benachrichtigen
+                //Überprüft ob Einträge vorhanden sind
+                shakeViewModel.checkList(placeholder,content);
             }
         });
     }

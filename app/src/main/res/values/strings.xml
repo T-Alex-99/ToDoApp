@@ -2,7 +2,7 @@
     <string name="app_name">ToDoApp</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Multifunctional To-Do</string>
+    <string name="nav_header_title">Multifunctional To-Do Application</string>
     <string name="nav_header_subtitle">Task Management and more</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
@@ -10,4 +10,8 @@
     <string name="menu_shake">To-Do List</string>
     <string name="menu_temp">Temperature</string>
     <string name="menu_proximity">Motivational</string>
+
+    <string name="missingToDo">Kein To-Do Punkt ausgewählt</string>
+
+    <string name="placeholder_text">Füge deine To-Dos mithilfe des Eingabefeldes hinzu</string>
 </resources>

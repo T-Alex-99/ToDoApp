@@ -53,9 +53,9 @@ public class TempFragment extends Fragment implements SensorEventListener {
             tmpSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
             isTemperatureSensorAvailable = true;
         }else{
-            styletextConvert("Temperature Sensor i not Available ");
+            styletextConvert("Temperature Sensor is not Available ");
 
-            textView.setText("Temperature Sensor i not Available ");
+            textView.setText("Temperature Sensor is not Available ");
             isTemperatureSensorAvailable = false;
         }
 
@@ -85,16 +85,12 @@ public class TempFragment extends Fragment implements SensorEventListener {
             mImageView.setImageResource(R.drawable.extremement_ensoilelle);
 
 
-        textView.setText(event.values[0]+"C");
+        textView.setText(event.values[0]+"°C");
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
-
-        if(i> 10){
-
         }
-    }
 
     @Override
     public void onResume(){
