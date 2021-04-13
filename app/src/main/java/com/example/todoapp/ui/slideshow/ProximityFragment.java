@@ -1,5 +1,6 @@
 package com.example.todoapp.ui.slideshow;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +29,9 @@ public class ProximityFragment extends Fragment implements SensorEventListener {
     private Sensor proximity;
     private static final int SENSOR_SENSITIVITY = 4;
     private Context c;
+    private YouTubePlayerView youTubePlayerView;
+
+    private AudioManager mAudioManager;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -38,16 +42,14 @@ public class ProximityFragment extends Fragment implements SensorEventListener {
 
         c = root.getContext();
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-
         proximity = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-
+        mAudioManager=(AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         return root;
     }
 
 
     @Override
     public final void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Do something here if sensor accuracy changes.
     }
 
     @Override
@@ -56,32 +58,36 @@ public class ProximityFragment extends Fragment implements SensorEventListener {
         {
             if (event.values[0] >= -SENSOR_SENSITIVITY && event.values[0] <= SENSOR_SENSITIVITY) {
                 //near
+                mAudioManager.setSpeakerphoneOn(false);
                 Toast.makeText(c.getApplicationContext(), "near", Toast.LENGTH_SHORT).show();
+
             } else {
                 //far
+                mAudioManager.setSpeakerphoneOn(true);
                 Toast.makeText(c.getApplicationContext(), "far", Toast.LENGTH_SHORT).show();
+
             }
         }
     }
 
     @Override
     public void onResume() {
-        // Register a listener for the sensor.
         super.onResume();
         sensorManager.registerListener(this, proximity, SensorManager.SENSOR_DELAY_NORMAL);
+        mAudioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
     }
 
     @Override
     public void onPause() {
-        // Be sure to unregister the sensor when the activity pauses.
         super.onPause();
+        mAudioManager.setMode(AudioManager.MODE_NORMAL);
         sensorManager.unregisterListener(this);
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         textView = view.findViewById(R.id.text_slideshow);
-        YouTubePlayerView youTubePlayerView = view.findViewById(R.id.youtube_player_view);
+        youTubePlayerView = view.findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
     }
 
