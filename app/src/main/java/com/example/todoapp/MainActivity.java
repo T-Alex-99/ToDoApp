@@ -1,7 +1,9 @@
 package com.example.todoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -52,5 +54,20 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent intent = new Intent(MainActivity.this, GoogleLogin.class);
+                intent.putExtra("signout","0");
+                startActivity(intent);
+                return true;
 
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 }

@@ -32,12 +32,15 @@ public class GoogleLogin extends AppCompatActivity implements View.OnClickListen
     private SignInButton signIn;
     private Button signOut;
     private Button disconnect;
+    private String token = "1";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_login);
+
+
 
         // Views
         mStatusTextView = findViewById(R.id.status);
@@ -80,7 +83,16 @@ public class GoogleLogin extends AppCompatActivity implements View.OnClickListen
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
+
+        Intent intent = getIntent();
+        token = intent.getStringExtra("signout");
+        if(token != null) {
+            signOut();
+
+        } else {
+            updateUI(account);
+        }
+
         // [END on_start_sign_in]
     }
 
@@ -123,7 +135,7 @@ public class GoogleLogin extends AppCompatActivity implements View.OnClickListen
     // [END signIn]
 
     // [START signOut]
-    private void signOut() {
+    protected void signOut() {
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
@@ -152,10 +164,11 @@ public class GoogleLogin extends AppCompatActivity implements View.OnClickListen
 
     private void updateUI(@Nullable GoogleSignInAccount account) {
         if (account != null) {
-            /**mStatusTextView.setText(getString(R.string.signed_in_fmt, account.getDisplayName()));
+            mStatusTextView.setText(getString(R.string.signed_in_fmt, account.getDisplayName()));
 
             findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);*/
+            findViewById(R.id.sign_out_and_disconnect).setVisibility(View.VISIBLE);
+
             Intent intent = new Intent(GoogleLogin.this, MainActivity.class);
             startActivity(intent);
         } else {
