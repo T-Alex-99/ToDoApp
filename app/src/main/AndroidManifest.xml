@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.todoapp">
+
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,15 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoApp">
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.ToDoApp.NoActionBar">
 
+        </activity>
+        <activity
+            android:name=".GoogleLogin"
+            android:theme="@style/Theme.ToDoApp.NoActionBar">
             <intent-filter>
-
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.GoogleLogin" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

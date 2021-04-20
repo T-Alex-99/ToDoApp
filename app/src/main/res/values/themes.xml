@@ -14,11 +14,11 @@
         <!-- Customize your theme here. -->
         <item name="android:textColorTertiary">@color/black</item>
     </style>
-
     <style name="Theme.ToDoApp.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
 
     <style name="Theme.ToDoApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
