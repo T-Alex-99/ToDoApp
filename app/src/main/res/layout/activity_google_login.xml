@@ -63,6 +63,13 @@
             tools:text="Optional Action"
             tools:visibility="visible" />
 
+        <Button
+            android:id="@+id/no_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue without Login"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     </LinearLayout>
 
 

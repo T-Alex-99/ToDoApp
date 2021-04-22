@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToDoApp">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:name=".GoogleLogin"
             android:theme="@style/Theme.ToDoApp.NoActionBar">
 
         </activity>
         <activity
-            android:name=".GoogleLogin"
+            android:name=".MainActivity"
+            android:label="@string/app_name"
             android:theme="@style/Theme.ToDoApp.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.GoogleLogin" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

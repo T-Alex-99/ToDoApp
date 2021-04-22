@@ -32,6 +32,7 @@ public class GoogleLogin extends AppCompatActivity implements View.OnClickListen
     private SignInButton signIn;
     private Button signOut;
     private Button disconnect;
+    private Button noLogin;
     private String token = "1";
 
 
@@ -49,10 +50,12 @@ public class GoogleLogin extends AppCompatActivity implements View.OnClickListen
         signIn = findViewById(R.id.sign_in_button);
         signOut = findViewById(R.id.sign_out_button);
         disconnect = findViewById(R.id.disconnect_button);
+        noLogin = findViewById(R.id.no_login);
 
         signIn.setOnClickListener(this);
         signOut.setOnClickListener(this);
         disconnect.setOnClickListener(this);
+        noLogin.setOnClickListener(this);
 
         // [START configure_signin]
         // Configure sign-in to request the user's ID, email address, and basic
@@ -191,6 +194,9 @@ public class GoogleLogin extends AppCompatActivity implements View.OnClickListen
             case R.id.disconnect_button:
                 revokeAccess();
                 break;
+            case R.id.no_login:
+                Intent intent = new Intent(GoogleLogin.this, MainActivity.class);
+                startActivity(intent);
         }
     }
 
