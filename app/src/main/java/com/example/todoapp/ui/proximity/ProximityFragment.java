@@ -1,4 +1,4 @@
-package com.example.todoapp.ui.slideshow;
+package com.example.todoapp.ui.proximity;
 
 import android.media.AudioManager;
 import android.os.Bundle;

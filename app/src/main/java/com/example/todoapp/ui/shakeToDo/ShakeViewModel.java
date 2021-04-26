@@ -1,4 +1,4 @@
-package com.example.todoapp.ui.home;
+package com.example.todoapp.ui.shakeToDo;
 
 import android.view.View;
 import android.widget.TextView;

@@ -1,4 +1,4 @@
-package com.example.todoapp.ui.slideshow;
+package com.example.todoapp.ui.proximity;
 
 
 import androidx.lifecycle.ViewModel;
