@@ -46,16 +46,18 @@ public class Account extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_account, container, false);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
-        login = root.findViewById(R.id.Login);
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            String personGivenName = acct.getGivenName();
-            Log.d("personGivenName", personGivenName);
-            System.out.println(personGivenName);
-            String personFamilyName = acct.getFamilyName();
-            String personEmail = acct.getEmail();
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
+            login = root.findViewById(R.id.Login);
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personGivenName = acct.getGivenName();
+                Log.d("personGivenName", personGivenName);
+                System.out.println(personGivenName);
+                String personFamilyName = acct.getFamilyName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+                Uri personPhoto = acct.getPhotoUrl();
+
+
 
             //Quelle: https://stackoverflow.com/questions/2313148/imageview-setimageuri-does-not-work-when-trying-to-assign-a-r-drawable-x-uri
             //Uri imgUri=Uri.parse("android.resource://my.package.name/"+R.drawable.image);
