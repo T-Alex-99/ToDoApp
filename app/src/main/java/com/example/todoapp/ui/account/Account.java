@@ -25,6 +25,8 @@ import com.example.todoapp.MainActivity;
 import com.example.todoapp.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
@@ -32,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Random;
 
 public class Account extends Fragment {
 
@@ -41,6 +44,7 @@ public class Account extends Fragment {
     private TextView accId;
     private ImageView photo;
     private Button login;
+    private Integer counterMessage = 1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -90,6 +94,8 @@ public class Account extends Fragment {
             });
             login.setVisibility(View.VISIBLE);
         }
+
+
         return root;
 
     }
@@ -102,7 +108,6 @@ public class Account extends Fragment {
         email = view.findViewById(R.id.accEmail);
         accId = view.findViewById(R.id.accAccId);
         photo = view.findViewById(R.id.accPhoto);
-
 
 
     }

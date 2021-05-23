@@ -7,6 +7,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,8 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.example.todoapp.R;
 import com.example.todoapp.ui.MiniAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -153,6 +156,17 @@ public class ShakeFragment extends Fragment {
                 adapter.notifyDataSetChanged(); // Model benachrichtigen
                 //Überprüft ob Einträge vorhanden sind
                 shakeViewModel.checkList(placeholder,content);
+
+                Random random = new Random();
+                FirebaseMessaging fm = FirebaseMessaging.getInstance();
+                String projectId = "159698303810";
+                Log.d("TAG", "Try to send a Message at Server: "+projectId);
+                fm.send(new RemoteMessage.Builder( projectId + "@gcm.googleapis.com")
+                        .setMessageId(""+random.nextInt())
+                        .addData("Hallo", "Das ist eine generierte Message von mir")
+                        .addData("action", "ECHO")
+                        .build());
+
             }
         });
 

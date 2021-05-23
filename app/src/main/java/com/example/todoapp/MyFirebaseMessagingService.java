@@ -71,15 +71,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // sends notification
         // messages. For more see: https://firebase.google.com/docs/cloud-messaging/concept-options
         // [END_EXCLUDE]
-
+        String message = String.valueOf(remoteMessage.getData().get("action"));
+        Log.d("Message Key Length:====", String.valueOf(remoteMessage.getData().get("action")) + "_______________" + message);
         // TODO(developer): Handle FCM messages here.
         // Not getting messages here? See why this may be: https://goo.gl/39bRNJ
         Log.d(TAG, "From: " + remoteMessage.getFrom());
 
-        // Check if message contains a data payload.
-        if (remoteMessage.getData().size() > 0) {
-            Log.d(TAG, "Message data payload: " + remoteMessage.getData());
 
+        // Check if message contains a data payload.
+        if (remoteMessage.getData().size() > 0 && remoteMessage.getData().get("action").equals("ECHO")) {
+            Log.d(TAG, "Message größer 0: " + remoteMessage.getData());
+            sendNotification(remoteMessage.getFrom());
+
+                }
             if (/* Check if data needs to be processed by long running job */ true) {
                 // For long-running tasks (10 seconds or more) use WorkManager.
 
@@ -89,15 +93,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
 
         }
-
+        /*
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
+        */
+
 
         // Also if you intend on generating your own notifications as a result of a received FCM
         // message, here is where that should be initiated. See sendNotification method below.
-    }
+
     // [END receive_message]
 
 
