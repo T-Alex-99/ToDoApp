@@ -25,6 +25,8 @@ import com.example.todoapp.MainActivity;
 import com.example.todoapp.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedInputStream;
@@ -32,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Random;
 
 public class Account extends Fragment {
 
@@ -46,21 +49,19 @@ public class Account extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_account, container, false);
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getActivity());
-        login = root.findViewById(R.id.Login);
-        if (acct != null) {
-            String personName = acct.getDisplayName();
-            String personGivenName = acct.getGivenName();
-            Log.d("personGivenName", personGivenName);
-            System.out.println(personGivenName);
-            String personFamilyName = acct.getFamilyName();
-            String personEmail = acct.getEmail();
-            String personId = acct.getId();
-            Uri personPhoto = acct.getPhotoUrl();
+            login = root.findViewById(R.id.Login);
+            if (acct != null) {
+                String personName = acct.getDisplayName();
+                String personGivenName = acct.getGivenName();
+                Log.d("personGivenName", personGivenName);
+                System.out.println(personGivenName);
+                String personFamilyName = acct.getFamilyName();
+                String personEmail = acct.getEmail();
+                String personId = acct.getId();
+                Uri personPhoto = acct.getPhotoUrl();
 
-            //Quelle: https://stackoverflow.com/questions/2313148/imageview-setimageuri-does-not-work-when-trying-to-assign-a-r-drawable-x-uri
-            //Uri imgUri=Uri.parse("android.resource://my.package.name/"+R.drawable.image);
+                
 
-            //imageView.setImageURI(imgUri);
 
             prename = root.findViewById(R.id.accPrename);
             name = root.findViewById(R.id.accName);
@@ -72,11 +73,10 @@ public class Account extends Fragment {
             name.append(personFamilyName);
             email.append(personEmail);
             accId.append(personId);
-            //photo.setImageURI(Uri.parse(personPhoto));
-            //photo.setImageBitmap(getImageBitmap(personPhoto));
+
             Picasso.with(this.getContext()).load(personPhoto).into(photo);
             login.setVisibility(View.GONE);
-            //photo.setImageURI(Uri.parse(String.valueOf(acct.getPhotoUrl())));
+
         } else {
             login = root.findViewById(R.id.Login);
             login.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +88,8 @@ public class Account extends Fragment {
             });
             login.setVisibility(View.VISIBLE);
         }
+
+
         return root;
 
     }
@@ -100,7 +102,6 @@ public class Account extends Fragment {
         email = view.findViewById(R.id.accEmail);
         accId = view.findViewById(R.id.accAccId);
         photo = view.findViewById(R.id.accPhoto);
-
 
 
     }
