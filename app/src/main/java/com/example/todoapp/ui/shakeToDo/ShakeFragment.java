@@ -157,6 +157,7 @@ public class ShakeFragment extends Fragment {
                 //Überprüft ob Einträge vorhanden sind
                 shakeViewModel.checkList(placeholder,content);
 
+                /**Teil 2 */
                 Random random = new Random();
                 FirebaseMessaging fm = FirebaseMessaging.getInstance();
                 String projectId = "159698303810";

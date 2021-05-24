@@ -44,7 +44,6 @@ public class Account extends Fragment {
     private TextView accId;
     private ImageView photo;
     private Button login;
-    private Integer counterMessage = 1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -61,12 +60,8 @@ public class Account extends Fragment {
                 String personId = acct.getId();
                 Uri personPhoto = acct.getPhotoUrl();
 
+                
 
-
-            //Quelle: https://stackoverflow.com/questions/2313148/imageview-setimageuri-does-not-work-when-trying-to-assign-a-r-drawable-x-uri
-            //Uri imgUri=Uri.parse("android.resource://my.package.name/"+R.drawable.image);
-
-            //imageView.setImageURI(imgUri);
 
             prename = root.findViewById(R.id.accPrename);
             name = root.findViewById(R.id.accName);
@@ -78,11 +73,10 @@ public class Account extends Fragment {
             name.append(personFamilyName);
             email.append(personEmail);
             accId.append(personId);
-            //photo.setImageURI(Uri.parse(personPhoto));
-            //photo.setImageBitmap(getImageBitmap(personPhoto));
+
             Picasso.with(this.getContext()).load(personPhoto).into(photo);
             login.setVisibility(View.GONE);
-            //photo.setImageURI(Uri.parse(String.valueOf(acct.getPhotoUrl())));
+
         } else {
             login = root.findViewById(R.id.Login);
             login.setOnClickListener(new View.OnClickListener() {
